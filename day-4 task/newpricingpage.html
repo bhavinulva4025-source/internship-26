@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium SaaS Pricing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+    padding:80px 20px;
+    position:relative;
+}
+
+/* Aurora Background */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:700px;
+    height:700px;
+    background:#7c3aed;
+    filter:blur(180px);
+    opacity:.25;
+    top:-250px;
+    left:-250px;
+    animation:move1 15s infinite ease-in-out;
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:#06b6d4;
+    filter:blur(180px);
+    opacity:.2;
+    bottom:-200px;
+    right:-200px;
+    animation:move2 18s infinite ease-in-out;
+    z-index:-2;
+}
+
+@keyframes move1{
+    50%{
+        transform:translate(180px,120px);
+    }
+}
+
+@keyframes move2{
+    50%{
+        transform:translate(-180px,-120px);
+    }
+}
+
+.container{
+    max-width:1300px;
+    margin:auto;
+}
+/* Edge Glow Effect */
+
+body{
+    position:relative;
+}
+
+/* Top Glow */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #8b5cf6,
+        #06b6d4,
+        #ec4899,
+        transparent
+    );
+    box-shadow:
+        0 0 20px #8b5cf6,
+        0 0 40px #06b6d4;
+    z-index:999;
+}
+
+/* Bottom Glow */
+body::after{
+    content:"";
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #ec4899,
+        #06b6d4,
+        #8b5cf6,
+        transparent
+    );
+    box-shadow:
+        0 0 20px #ec4899,
+        0 0 40px #06b6d4;
+    z-index:999;
+}
+
+/* Heading */
+
+.heading{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.heading h1{
+    font-size:clamp(2.5rem,5vw,4.5rem);
+    font-weight:800;
+    background:linear-gradient(90deg,#8b5cf6,#06b6d4,#ec4899);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.heading p{
+    margin-top:15px;
+    color:#94a3b8;
+    font-size:1.1rem;
+}
+
+/* Pricing Grid */
+
+.pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+    margin-bottom:80px;
+}
+
+/* Card */
+
+.card{
+    position:relative;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+    border-radius:28px;
+    padding:40px;
+    overflow:hidden;
+    transition:.5s ease;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:1px;
+    border-radius:28px;
+    background:linear-gradient(
+        135deg,
+        #8b5cf6,
+        #06b6d4,
+        #ec4899
+    );
+
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+}
+
+.card:hover{
+    transform:translateY(-15px);
+    box-shadow:
+    0 20px 60px rgba(139,92,246,.3),
+    0 0 50px rgba(6,182,212,.2);
+}
+
+.popular{
+    transform:scale(1.05);
+}
+
+.ribbon{
+    position:absolute;
+    top:20px;
+    right:-45px;
+    background:linear-gradient(90deg,#8b5cf6,#06b6d4);
+    padding:8px 55px;
+    transform:rotate(45deg);
+    font-size:.75rem;
+    font-weight:700;
+}
+
+.plan{
+    font-size:1.7rem;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.price{
+    font-size:3.5rem;
+    font-weight:800;
+}
+
+.price span{
+    font-size:1rem;
+    color:#94a3b8;
+}
+
+.features{
+    list-style:none;
+    margin:35px 0;
+}
+
+.features li{
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    color:#dbeafe;
+}
+
+.btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    color:white;
+    padding:15px;
+    border-radius:14px;
+    background:linear-gradient(
+    135deg,
+    #8b5cf6,
+    #06b6d4
+    );
+    font-weight:700;
+    position:relative;
+    overflow:hidden;
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent
+    );
+    transition:.8s;
+}
+
+.btn:hover::before{
+    left:120%;
+}
+
+/* Comparison */
+
+.compare-title{
+    text-align:center;
+    font-size:2rem;
+    margin-bottom:30px;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+th{
+    background:linear-gradient(
+    90deg,
+    #8b5cf6,
+    #06b6d4
+    );
+}
+
+th,td{
+    padding:18px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+tbody tr{
+    transition:.3s;
+}
+
+tbody tr:hover{
+    background:rgba(139,92,246,.12);
+}
+
+.check{
+    color:#22c55e;
+    font-size:20px;
+}
+
+.cross{
+    color:#ef4444;
+    font-size:20px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .popular{
+        transform:none;
+    }
+
+    .card{
+        padding:30px;
+    }
+
+    .price{
+        font-size:2.8rem;
+    }
+
+    th,td{
+        padding:12px;
+        font-size:.9rem;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="heading">
+        <h1>Simple Pricing. Powerful Growth.</h1>
+        <p>Everything you need to scale your business.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+        <div class="card">
+            <h2 class="plan">Basic</h2>
+            <div class="price">₹499<span>/month</span></div>
+
+            <ul class="features">
+                <li>5 Projects</li>
+                <li>10GB Storage</li>
+                <li>Email Support</li>
+                <li>Basic Analytics</li>
+                <li>1 Team Member</li>
+            </ul>
+
+            <a href="#" class="btn">Get Started</a>
+        </div>
+
+        <div class="card popular">
+            <div class="ribbon">POPULAR</div>
+
+            <h2 class="plan">Pro</h2>
+            <div class="price">₹1499<span>/month</span></div>
+
+            <ul class="features">
+                <li>50 Projects</li>
+                <li>100GB Storage</li>
+                <li>Priority Support</li>
+                <li>Advanced Analytics</li>
+                <li>10 Team Members</li>
+            </ul>
+
+            <a href="#" class="btn">Start Free Trial</a>
+        </div>
+
+        <div class="card">
+            <h2 class="plan">Enterprise</h2>
+            <div class="price">₹4999<span>/month</span></div>
+
+            <ul class="features">
+                <li>Unlimited Projects</li>
+                <li>Unlimited Storage</li>
+                <li>Dedicated Manager</li>
+                <li>Custom Reports</li>
+                <li>Unlimited Team Members</li>
+            </ul>
+
+            <a href="#" class="btn">Contact Sales</a>
+        </div>
+
+    </div>
+
+    <h2 class="compare-title">Compare Plans</h2>
+
+    <div class="table-wrap">
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Features</th>
+                    <th>Basic</th>
+                    <th>Pro</th>
+                    <th>Enterprise</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Projects</td>
+                    <td>5</td>
+                    <td>50</td>
+                    <td>Unlimited</td>
+                </tr>
+
+                <tr>
+                    <td>Storage</td>
+                    <td>10GB</td>
+                    <td>100GB</td>
+                    <td>Unlimited</td>
+                </tr>
+
+                <tr>
+                    <td>Analytics</td>
+                    <td>Basic</td>
+                    <td>Advanced</td>
+                    <td>Custom</td>
+                </tr>
+
+                <tr>
+                    <td>Priority Support</td>
+                    <td class="cross">✕</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                </tr>
+
+                <tr>
+                    <td>API Access</td>
+                    <td class="cross">✕</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                </tr>
+
+                <tr>
+                    <td>Dedicated Manager</td>
+                    <td class="cross">✕</td>
+                    <td class="cross">✕</td>
+                    <td class="check">✓</td>
+                </tr>
+
+                <tr>
+                    <td>Custom Reports</td>
+                    <td class="cross">✕</td>
+                    <td class="cross">✕</td>
+                    <td class="check">✓</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
