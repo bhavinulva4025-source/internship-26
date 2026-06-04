@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credit Card Payment Form</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at top left,#4f46e5,transparent 35%),
+    radial-gradient(circle at bottom right,#06b6d4,transparent 35%),
+    #050816;
+    padding:20px;
+}
+
+.wrapper{
+    width:100%;
+    max-width:480px;
+    padding:2px;
+    border-radius:25px;
+    background:linear-gradient(135deg,#00e5ff,#7c3aed,#00e5ff);
+    background-size:300% 300%;
+    animation:glow 6s linear infinite;
+}
+
+@keyframes glow{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.form-container{
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(18px);
+    border-radius:23px;
+    padding:30px;
+}
+
+.card-preview{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:25px;
+}
+
+.chip{
+    width:55px;
+    height:40px;
+    border-radius:8px;
+    background:linear-gradient(#ddd,#999);
+}
+
+.preview-number{
+    margin-top:20px;
+    color:#fff;
+    font-size:22px;
+    letter-spacing:2px;
+}
+
+.preview-name{
+    margin-top:15px;
+    color:#cbd5e1;
+    text-transform:uppercase;
+}
+
+h2{
+    color:white;
+    margin-bottom:5px;
+}
+
+.subtitle{
+    color:#94a3b8;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    color:#dbeafe;
+    margin-bottom:8px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.12);
+    background:rgba(255,255,255,0.05);
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+
+input:focus{
+    border-color:#00e5ff;
+    box-shadow:0 0 15px rgba(0,229,255,.3);
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#00e5ff,#7c3aed);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(124,58,237,.4);
+}
+
+.message{
+    margin-top:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.success{
+    color:#22c55e;
+}
+
+.error{
+    color:#ef4444;
+}
+
+@media(max-width:500px){
+    .row{
+        grid-template-columns:1fr;
+    }
+
+    .preview-number{
+        font-size:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+<div class="form-container">
+
+<div class="card-preview">
+<div class="chip"></div>
+
+<div class="preview-number" id="cardPreview">
+•••• •••• •••• ••••
+</div>
+
+<div class="preview-name" id="namePreview">
+CARD HOLDER
+</div>
+</div>
+
+<h2>Credit Card Payment</h2>
+<p class="subtitle">Secure futuristic payment form</p>
+
+<form id="paymentForm">
+
+<div class="input-group">
+<label>Card Holder Name</label>
+<input
+type="text"
+id="cardName"
+placeholder="John Doe"
+required>
+</div>
+
+<div class="input-group">
+<label>Card Number</label>
+<input
+type="text"
+id="cardNumber"
+maxlength="19"
+placeholder="1234 5678 9012 3456"
+required>
+</div>
+
+<div class="row">
+
+<div class="input-group">
+<label>Expiry Date</label>
+<input
+type="text"
+id="expiry"
+maxlength="5"
+placeholder="MM/YY"
+required>
+</div>
+
+<div class="input-group">
+<label>CVV</label>
+<input
+type="password"
+maxlength="3"
+placeholder="123"
+required>
+</div>
+
+</div>
+
+<button type="submit">
+Pay Now
+</button>
+
+<div id="message" class="message"></div>
+
+</form>
+
+</div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
