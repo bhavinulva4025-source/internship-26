@@ -1,0 +1,212 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Directory</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#0f766e);
+    padding:30px;
+}
+
+.container{
+    width:100%;
+    max-width:1100px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.35);
+}
+
+.title{
+    text-align:center;
+    color:white;
+    margin-bottom:25px;
+}
+
+.title h1{
+    font-size:2rem;
+    font-weight:700;
+}
+
+.title p{
+    opacity:.8;
+    margin-top:5px;
+}
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:18px;
+}
+
+thead{
+    background:linear-gradient(135deg,#06b6d4,#14b8a6);
+}
+
+thead th{
+    color:white;
+    padding:18px;
+    text-align:left;
+    font-size:15px;
+    letter-spacing:0.5px;
+}
+
+tbody tr{
+    background:rgba(255,255,255,0.92);
+    transition:all .3s ease;
+}
+
+tbody tr:nth-child(even){
+    background:#eef8ff;
+}
+
+tbody tr:hover{
+    transform:scale(1.01);
+    background:#dff7ff;
+}
+
+tbody td{
+    padding:16px 18px;
+    border-bottom:1px solid #dbeafe;
+    color:#1e293b;
+    font-weight:500;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#06b6d4,#14b8a6);
+    color:white;
+    font-size:13px;
+    font-weight:600;
+}
+
+.salary{
+    color:#059669;
+    font-weight:700;
+}
+
+@media(max-width:768px){
+
+    .title h1{
+        font-size:1.6rem;
+    }
+
+    table{
+        min-width:700px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="title">
+            <h1>Employee Management Table</h1>
+            <p>Generated using JavaScript DOM Manipulation</p>
+        </div>
+
+        <div class="table-wrapper">
+            <table id="employeeTable">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Salary (INR)</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+const employees = [
+    {
+        name: "Aarav Sharma",
+        empid: "001",
+        department: "Information Technology",
+        salary_inr: 65000
+    },
+    {
+        name: "Priya Patel",
+        empid: "002",
+        department: "Human Resources",
+        salary_inr: 55000
+    },
+    {
+        name: "Rohan Mehta",
+        empid: "003",
+        department: "Finance",
+        salary_inr: 72000
+    },
+    {
+        name: "Sneha Verma",
+        empid: "004",
+        department: "Marketing",
+        salary_inr: 60000
+    },
+    {
+        name: "Vikram Singh",
+        empid: "005",
+        department: "Operations",
+        salary_inr: 68000
+    }
+];
+
+const tbody = document.querySelector("#employeeTable tbody");
+
+employees.forEach(emp => {
+
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+        <td>${emp.empid}</td>
+        <td>${emp.name}</td>
+        <td><span class="badge">${emp.department}</span></td>
+        <td class="salary">₹${emp.salary_inr.toLocaleString('en-IN')}</td>
+    `;
+
+    tbody.appendChild(row);
+});
+
+</script>
+
+</body>
+</html>
+```
