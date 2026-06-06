@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO METADATA -->
+  <title>Zyphora Drift | Premium Electric Scooter Rental Startup</title>
+  <meta 
+    name="description" 
+    content="Zyphora Drift is a futuristic electric scooter rental startup offering premium monthly passes, smart scooters, city mobility, and eco-friendly urban rides." 
+  />
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" 
+    rel="stylesheet"
+  >
+
+  <style>
+    /* ==================================================
+       BRAND SYSTEM
+       Brand Name: Zyphora Drift
+       H1 Heading: Move Like The City Was Built For You
+       4-Color CSS Palette
+    ================================================== */
+
+    :root {
+      --deep-space: #05030f;
+      --violet-burst: #8f5cff;
+      --acid-mint: #a8ff78;
+      --cloud-white: #f7f5ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Outfit", sans-serif;
+      background: var(--deep-space);
+      color: var(--cloud-white);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* ==================================================
+       BACKGROUND
+    ================================================== */
+
+    .page-glow {
+      position: fixed;
+      inset: 0;
+      z-index: -10;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(143, 92, 255, 0.28), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(168, 255, 120, 0.18), transparent 25%),
+        radial-gradient(circle at 45% 85%, rgba(143, 92, 255, 0.2), transparent 34%),
+        var(--deep-space);
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: -9;
+      opacity: 0.08;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    .liquid-orb {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      background: linear-gradient(135deg, rgba(143, 92, 255, 0.25), rgba(168, 255, 120, 0.14));
+      filter: blur(60px);
+      z-index: -8;
+      animation: morph 12s infinite alternate ease-in-out;
+    }
+
+    .liquid-orb.one {
+      top: 12%;
+      left: -160px;
+    }
+
+    .liquid-orb.two {
+      right: -160px;
+      bottom: 5%;
+      animation-delay: 3s;
+    }
+
+    @keyframes morph {
+      0% {
+        transform: translateY(0) scale(1);
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      }
+
+      100% {
+        transform: translateY(-60px) scale(1.15);
+        border-radius: 70% 30% 45% 55% / 35% 65% 35% 65%;
+      }
+    }
+
+    /* ==================================================
+       HEADER
+    ================================================== */
+
+    header {
+      width: min(1200px, 92%);
+      margin: auto;
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 20;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .logo-symbol {
+      width: 46px;
+      height: 46px;
+      border-radius: 17px;
+      background:
+        linear-gradient(135deg, var(--violet-burst), var(--acid-mint));
+      color: var(--deep-space);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 0 40px rgba(143, 92, 255, 0.55);
+      animation: logoFloat 3s infinite ease-in-out;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-5px) rotate(-6deg);
+      }
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: rgba(247, 245, 255, 0.68);
+      font-size: 0.96rem;
+    }
+
+    nav a {
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--acid-mint);
+    }
+
+    .nav-cta {
+      padding: 11px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--cloud-white);
+      transition: 0.3s;
+    }
+
+    .nav-cta:hover {
+      background: var(--acid-mint);
+      color: var(--deep-space);
+      transform: translateY(-3px);
+    }
+
+    /* ==================================================
+       HERO
+    ================================================== */
+
+    .hero {
+      width: min(1200px, 92%);
+      min-height: calc(100vh - 94px);
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.03fr 0.97fr;
+      align-items: center;
+      gap: 48px;
+      padding: 45px 0 90px;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(247,245,255,0.75);
+      margin-bottom: 24px;
+      backdrop-filter: blur(14px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .eyebrow span {
+      color: var(--acid-mint);
+      font-weight: 800;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 7vw, 7.2rem);
+      line-height: 0.88;
+      letter-spacing: -0.08em;
+      font-weight: 900;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .highlight {
+      color: transparent;
+      background: linear-gradient(120deg, var(--cloud-white), var(--acid-mint), var(--violet-burst));
+      background-size: 220%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: gradientMove 4s infinite linear;
+    }
+
+    @keyframes gradientMove {
+      from {
+        background-position: 0%;
+      }
+
+      to {
+        background-position: 220%;
+      }
+    }
+
+    .hero-text {
+      max-width: 640px;
+      margin-top: 28px;
+      font-size: 1.12rem;
+      line-height: 1.8;
+      color: rgba(247,245,255,0.68);
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+      animation: fadeUp 1.35s ease forwards;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 15px 24px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      transition: 0.35s;
+    }
+
+    .primary-btn {
+      background: var(--acid-mint);
+      color: var(--deep-space);
+      box-shadow: 0 0 36px rgba(168, 255, 120, 0.34);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 0 60px rgba(168, 255, 120, 0.55);
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,0.06);
+      color: var(--cloud-white);
+      border: 1px solid rgba(255,255,255,0.13);
+    }
+
+    .secondary-btn:hover {
+      transform: translateY(-5px);
+      border-color: var(--violet-burst);
+      color: var(--acid-mint);
+    }
+
+    /* ==================================================
+       HERO DEVICE VISUAL
+    ================================================== */
+
+    .hero-visual {
+      min-height: 570px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .city-card {
+      width: min(455px, 100%);
+      min-height: 540px;
+      border-radius: 44px;
+      padding: 28px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.035));
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 40px 120px rgba(0,0,0,0.48);
+      backdrop-filter: blur(24px);
+      position: relative;
+      overflow: hidden;
+      animation: visualPop 1.2s ease forwards;
+    }
+
+    .city-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(168, 255, 120, 0.18), transparent 25%),
+        radial-gradient(circle at 75% 70%, rgba(143, 92, 255, 0.22), transparent 30%);
+      pointer-events: none;
+    }
+
+    .map-pill {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 16px;
+      border-radius: 24px;
+      background: rgba(5,3,15,0.65);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .map-pill small {
+      color: rgba(247,245,255,0.55);
+    }
+
+    .map-pill strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 1.1rem;
+    }
+
+    .battery {
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--acid-mint);
+      background: rgba(168,255,120,0.12);
+      font-weight: 800;
+    }
+
+    .road {
+      position: absolute;
+      width: 78%;
+      height: 280px;
+      left: 11%;
+      bottom: 72px;
+      border-radius: 160px 160px 35px 35px;
+      border: 2px dashed rgba(247,245,255,0.18);
+      transform: perspective(600px) rotateX(58deg);
+    }
+
+    .scooter-mini {
+      position: absolute;
+      width: 170px;
+      height: 130px;
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      animation: scooterMove 4s infinite ease-in-out;
+      z-index: 3;
+    }
+
+    @keyframes scooterMove {
+      0%, 100% {
+        transform: translate(-50%, -50%) translateX(-12px) translateY(0);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) translateX(15px) translateY(-14px);
+      }
+    }
+
+    .scooter-deck {
+      position: absolute;
+      bottom: 36px;
+      left: 18px;
+      width: 125px;
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--acid-mint), var(--violet-burst));
+      box-shadow: 0 0 28px rgba(168,255,120,0.4);
+    }
+
+    .scooter-bar {
+      position: absolute;
+      right: 32px;
+      top: 12px;
+      width: 10px;
+      height: 95px;
+      border-radius: 999px;
+      background: var(--cloud-white);
+      transform: rotate(-12deg);
+    }
+
+    .scooter-bar::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      right: -42px;
+      width: 70px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--cloud-white);
+    }
+
+    .scooter-wheel {
+      position: absolute;
+      bottom: 8px;
+      width: 50px;
+      height: 50px;
+      border: 8px solid var(--cloud-white);
+      border-radius: 50%;
+      box-shadow: 0 0 25px rgba(143,92,255,0.45);
+      animation: wheelSpin 2s infinite linear;
+    }
+
+    .scooter-wheel.left {
+      left: 16px;
+    }
+
+    .scooter-wheel.right {
+      right: 5px;
+    }
+
+    @keyframes wheelSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .floating-card {
+      position: absolute;
+      z-index: 5;
+      padding: 15px 17px;
+      border-radius: 22px;
+      background: rgba(5,3,15,0.68);
+      border: 1px solid rgba(255,255,255,0.13);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.36);
+      animation: floatStat 4s infinite ease-in-out;
+    }
+
+    .floating-card strong {
+      display: block;
+      color: var(--acid-mint);
+      font-size: 1.35rem;
+    }
+
+    .floating-card span {
+      color: rgba(247,245,255,0.6);
+      font-size: 0.82rem;
+    }
+
+    .fc-one {
+      right: -14px;
+      top: 145px;
+    }
+
+    .fc-two {
+      left: -14px;
+      bottom: 92px;
+      animation-delay: 1.4s;
+    }
+
+    @keyframes floatStat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-13px);
+      }
+    }
+
+    /* ==================================================
+       COMMON SECTION
+    ================================================== */
+
+    section {
+      width: min(1200px, 92%);
+      margin: auto;
+      padding: 84px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      max-width: 760px;
+    }
+
+    .section-heading p {
+      color: rgba(247,245,255,0.63);
+      line-height: 1.8;
+      max-width: 420px;
+    }
+
+    /* ==================================================
+       FEATURES
+    ================================================== */
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      padding: 26px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+      min-height: 245px;
+      transition: 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: rgba(168,255,120,0.14);
+      border-radius: 50%;
+      right: -55px;
+      top: -55px;
+      filter: blur(30px);
+      opacity: 0;
+      transition: 0.35s;
+    }
+
+    .feature:hover {
+      transform: translateY(-10px);
+      border-color: rgba(168,255,120,0.35);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .feature:hover::after {
+      opacity: 1;
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(143,92,255,0.16);
+      color: var(--acid-mint);
+      font-size: 1.4rem;
+      margin-bottom: 22px;
+    }
+
+    .feature h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .feature p {
+      color: rgba(247,245,255,0.62);
+      line-height: 1.7;
+      font-size: 0.94rem;
+    }
+
+    /* ==================================================
+       MONTHLY PASSES
+    ================================================== */
+
+    .passes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .pass-card {
+      padding: 30px;
+      border-radius: 36px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.11);
+      position: relative;
+      overflow: hidden;
+      transition: 0.35s ease;
+    }
+
+    .pass-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(168,255,120,0.38);
+    }
+
+    .pass-card.popular {
+      background:
+        radial-gradient(circle at top right, rgba(168,255,120,0.22), transparent 35%),
+        linear-gradient(145deg, rgba(143,92,255,0.2), rgba(255,255,255,0.055));
+      border-color: rgba(168,255,120,0.34);
+      box-shadow: 0 30px 90px rgba(143,92,255,0.2);
+    }
+
+    .tag {
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(168,255,120,0.13);
+      color: var(--acid-mint);
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .pass-card h3 {
+      font-size: 1.8rem;
+      letter-spacing: -0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pass-subtitle {
+      color: rgba(247,245,255,0.62);
+      line-height: 1.6;
+      min-height: 52px;
+    }
+
+    .price {
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      margin: 22px 0 6px;
+    }
+
+    .price small {
+      font-size: 0.95rem;
+      color: rgba(247,245,255,0.54);
+      letter-spacing: 0;
+      font-weight: 500;
+    }
+
+    .scooter-type {
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(5,3,15,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin: 22px 0;
+    }
+
+    .scooter-type strong {
+      display: block;
+      color: var(--acid-mint);
+      margin-bottom: 5px;
+    }
+
+    .scooter-type span {
+      color: rgba(247,245,255,0.62);
+      font-size: 0.92rem;
+    }
+
+    .pass-card ul {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+      margin: 24px 0 28px;
+    }
+
+    .pass-card li {
+      display: flex;
+      gap: 10px;
+      color: rgba(247,245,255,0.68);
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .pass-card li b {
+      color: var(--acid-mint);
+    }
+
+    .pass-card button {
+      width: 100%;
+    }
+
+    /* ==================================================
+       SCOOTER SHOWCASE
+    ================================================== */
+
+    .scooter-showcase {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .showcase-left,
+    .showcase-right {
+      border-radius: 38px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 34px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .showcase-left {
+      background:
+        radial-gradient(circle at 20% 10%, rgba(168,255,120,0.16), transparent 32%),
+        rgba(255,255,255,0.055);
+    }
+
+    .showcase-left h2 {
+      font-size: clamp(2.3rem, 4vw, 4.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      margin-bottom: 22px;
+    }
+
+    .showcase-left p {
+      color: rgba(247,245,255,0.64);
+      line-height: 1.8;
+    }
+
+    .fleet-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .fleet-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      border-radius: 26px;
+      background: rgba(5,3,15,0.48);
+      border: 1px solid rgba(255,255,255,0.09);
+      transition: 0.3s;
+    }
+
+    .fleet-item:hover {
+      transform: translateX(8px);
+      border-color: rgba(168,255,120,0.35);
+    }
+
+    .fleet-icon {
+      height: 64px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(143,92,255,0.55), rgba(168,255,120,0.18));
+      font-size: 1.8rem;
+    }
+
+    .fleet-item h3 {
+      margin-bottom: 5px;
+    }
+
+    .fleet-item p {
+      color: rgba(247,245,255,0.58);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .fleet-badge {
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(168,255,120,0.12);
+      color: var(--acid-mint);
+      font-size: 0.78rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* ==================================================
+       REVIEWS
+    ================================================== */
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .review-card {
+      padding: 28px;
+      border-radius: 32px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.35s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(143,92,255,0.45);
+    }
+
+    .stars {
+      color: var(--acid-mint);
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    .review-card p {
+      color: rgba(247,245,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 22px;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--violet-burst), var(--acid-mint));
+      color: var(--deep-space);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .user strong {
+      display: block;
+    }
+
+    .user span {
+      color: rgba(247,245,255,0.52);
+      font-size: 0.86rem;
+    }
+
+    /* ==================================================
+       CTA
+    ================================================== */
+
+    .cta {
+      border-radius: 44px;
+      padding: 82px 34px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(168,255,120,0.18), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(143,92,255,0.24), transparent 34%),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .cta h2 {
+      max-width: 850px;
+      margin: auto;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.08em;
+    }
+
+    .cta p {
+      max-width: 620px;
+      margin: 24px auto 34px;
+      color: rgba(247,245,255,0.66);
+      line-height: 1.8;
+    }
+
+    footer {
+      width: min(1200px, 92%);
+      margin: auto;
+      padding: 36px 0 44px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(247,245,255,0.52);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.92rem;
+    }
+
+    /* ==================================================
+       ANIMATIONS
+    ================================================== */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes visualPop {
+      from {
+        opacity: 0;
+        transform: scale(0.94) rotate(2deg);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    /* ==================================================
+       RESPONSIVE
+    ================================================== */
+
+    @media (max-width: 980px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 32px;
+      }
+
+      .hero-visual {
+        min-height: 520px;
+      }
+
+      .features-grid,
+      .passes,
+      .reviews,
+      .scooter-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 18px;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 620px) {
+      header {
+        padding: 18px 0;
+      }
+
+      .logo {
+        font-size: 1.08rem;
+      }
+
+      h1 {
+        font-size: 3.45rem;
+      }
+
+      .hero-text {
+        font-size: 1rem;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        width: 100%;
+      }
+
+      .city-card {
+        min-height: 470px;
+        border-radius: 34px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-card {
+        padding: 12px 14px;
+      }
+
+      .fc-one {
+        right: 5px;
+      }
+
+      .fc-two {
+        left: 5px;
+      }
+
+      section {
+        padding: 62px 0;
+      }
+
+      .fleet-item {
+        grid-template-columns: 1fr;
+      }
+
+      .fleet-badge {
+        width: fit-content;
+      }
+
+      .cta {
+        border-radius: 32px;
+        padding: 64px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="page-glow"></div>
+  <div class="noise"></div>
+  <div class="liquid-orb one"></div>
+  <div class="liquid-orb two"></div>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">
+      <span class="logo-symbol">Z</span>
+      <span>Zyphora Drift</span>
+    </a>
+
+    <nav>
+      <a href="#features">Experience</a>
+      <a href="#passes">Passes</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#start" class="nav-cta">Start Ride</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main class="hero">
+    <div>
+      <div class="eyebrow">
+        <span>New Urban Mobility</span> for fast electric city rides
+      </div>
+
+      <h1>
+        Move Like The City Was 
+        <span class="highlight">Built For You</span>
+      </h1>
+
+      <p class="hero-text">
+        Zyphora Drift is a premium electric scooter rental startup created for students,
+        creators, office commuters, and city explorers who want silent speed, flexible passes,
+        and beautifully simple mobility without owning a vehicle.
+      </p>
+
+      <div class="hero-actions">
+        <button class="primary-btn">Choose Monthly Pass</button>
+        <button class="secondary-btn">View Scooter Fleet</button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="city-card">
+        <div class="map-pill">
+          <div>
+            <small>Nearest Drift Dock</small>
+            <strong>240m away</strong>
+          </div>
+          <div class="battery">92%</div>
+        </div>
+
+        <div class="road"></div>
+
+        <div class="scooter-mini">
+          <div class="scooter-bar"></div>
+          <div class="scooter-deck"></div>
+          <div class="scooter-wheel left"></div>
+          <div class="scooter-wheel right"></div>
+        </div>
+
+        <div class="floating-card fc-one">
+          <strong>18k+</strong>
+          <span>monthly rides</span>
+        </div>
+
+        <div class="floating-card fc-two">
+          <strong>4.9★</strong>
+          <span>service rating</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-heading">
+      <h2>A rental experience designed like a premium mobility product.</h2>
+      <p>
+        From smart unlocking to clean routing, Zyphora Drift makes scooter rental feel
+        modern, safe, and effortless.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Unlock</h3>
+        <p>
+          Scan the scooter QR code, unlock instantly, and start riding within seconds.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <h3>Safety First</h3>
+        <p>
+          Speed limits, ride zones, smart brakes, and safety checks are built into every ride.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">📍</div>
+        <h3>Smart Dock Map</h3>
+        <p>
+          See available scooters, parking docks, battery percentage, and route distance.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🌱</div>
+        <h3>Eco Commute</h3>
+        <p>
+          Replace short fuel rides with clean electric movement for daily city travel.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MONTHLY PASSES -->
+  <section id="passes">
+    <div class="section-heading">
+      <h2>Monthly passes for every type of rider.</h2>
+      <p>
+        Basic, moderate, and mega-level users get different scooters, limits, features,
+        and riding benefits.
+      </p>
+    </div>
+
+    <div class="passes">
+
+      <!-- BASIC PASS -->
+      <div class="pass-card">
+        <div class="tag">Basic Plan</div>
+        <h3>Nibble Pass</h3>
+        <p class="pass-subtitle">
+          Best for short-distance riders, students, and occasional city movement.
+        </p>
+
+        <div class="price">
+          ₹699 <small>/ month</small>
+        </div>
+
+        <div class="scooter-type">
+          <strong>Scooter Included: Drift Lite S1</strong>
+          <span>Compact scooter with smooth speed, ideal for nearby routes.</span>
+        </div>
+
+        <ul>
+          <li><b>✓</b> 120 ride minutes included</li>
+          <li><b>✓</b> Max speed up to 20 km/h</li>
+          <li><b>✓</b> Standard battery scooters</li>
+          <li><b>✓</b> Basic app support</li>
+          <li><b>✓</b> Perfect for college and short market rides</li>
+        </ul>
+
+        <button class="secondary-btn">Start With Nibble</button>
+      </div>
+
+      <!-- MODERATE PASS -->
+      <div class="pass-card popular">
+        <div class="tag">Most Popular</div>
+        <h3>Orbit Pass</h3>
+        <p class="pass-subtitle">
+          Designed for daily commuters who need reliable scooters and more freedom.
+        </p>
+
+        <div class="price">
+          ₹1,499 <small>/ month</small>
+        </div>
+
+        <div class="scooter-type">
+          <strong>Scooter Included: Drift Core X2</strong>
+          <span>Balanced scooter with better range, comfort, and city speed.</span>
+        </div>
+
+        <ul>
+          <li><b>✓</b> 360 ride minutes included</li>
+          <li><b>✓</b> Max speed up to 28 km/h</li>
+          <li><b>✓</b> Priority scooter availability</li>
+          <li><b>✓</b> Route suggestion support</li>
+          <li><b>✓</b> Free helmet add-on at selected docks</li>
+        </ul>
+
+        <button class="primary-btn">Choose Orbit</button>
+      </div>
+
+      <!-- MEGA PASS -->
+      <div class="pass-card">
+        <div class="tag">Mega Plan</div>
+        <h3>Apex Pass</h3>
+        <p class="pass-subtitle">
+          Built for power users, delivery partners, creators, and heavy city travelers.
+        </p>
+
+        <div class="price">
+          ₹2,799 <small>/ month</small>
+        </div>
+
+        <div class="scooter-type">
+          <strong>Scooter Included: Drift Max Z5</strong>
+          <span>Premium high-range scooter with stronger pickup and comfort deck.</span>
+        </div>
+
+        <ul>
+          <li><b>✓</b> 900 ride minutes included</li>
+          <li><b>✓</b> Max speed up to 35 km/h</li>
+          <li><b>✓</b> Premium scooter access</li>
+          <li><b>✓</b> 24/7 priority support</li>
+          <li><b>✓</b> Long-range battery scooters</li>
+        </ul>
+
+        <button class="secondary-btn">Go Apex</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCOOTER FLEET -->
+  <section id="fleet">
+    <div class="scooter-showcase">
+
+      <div class="showcase-left">
+        <h2>Different scooters for different riders.</h2>
+        <p>
+          Zyphora Drift does not give every rider the same scooter. Each pass unlocks
+          a different scooter class based on range, comfort, speed, and usage level.
+        </p>
+      </div>
+
+      <div class="showcase-right">
+        <div class="fleet-list">
+
+          <div class="fleet-item">
+            <div class="fleet-icon">🛴</div>
+            <div>
+              <h3>Drift Lite S1</h3>
+              <p>Lightweight scooter for short rides, students, and nearby city travel.</p>
+            </div>
+            <div class="fleet-badge">Nibble Pass</div>
+          </div>
+
+          <div class="fleet-item">
+            <div class="fleet-icon">⚡</div>
+            <div>
+              <h3>Drift Core X2</h3>
+              <p>Balanced daily scooter with better pickup, range, and riding comfort.</p>
+            </div>
+            <div class="fleet-badge">Orbit Pass</div>
+          </div>
+
+          <div class="fleet-item">
+            <div class="fleet-icon">🚀</div>
+            <div>
+              <h3>Drift Max Z5</h3>
+              <p>Premium long-range scooter for heavy riders and professional use.</p>
+            </div>
+            <div class="fleet-badge">Apex Pass</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="section-heading">
+      <h2>Riders love the freedom.</h2>
+      <p>
+        Service reviews from fictional customers using Zyphora Drift for daily movement.
+      </p>
+    </div>
+
+    <div class="reviews">
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>
+          “The Orbit Pass is perfect for my college and gym travel. I don’t need to worry
+          about petrol or parking anymore.”
+        </p>
+
+        <div class="user">
+          <div class="avatar">R</div>
+          <div>
+            <strong>Rohan Mehta</strong>
+            <span>Student Rider</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>
+          “The scooters feel premium and clean. Unlocking is fast, and the dock map makes
+          finding a ride very simple.”
+        </p>
+
+        <div class="user">
+          <div class="avatar">A</div>
+          <div>
+            <strong>Aarav Shah</strong>
+            <span>Daily Commuter</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>
+          “Apex Pass is very useful for my daily field work. Longer battery scooters save
+          me a lot of time.”
+        </p>
+
+        <div class="user">
+          <div class="avatar">N</div>
+          <div>
+            <strong>Neel Patel</strong>
+            <span>Business User</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="start">
+    <div class="cta">
+      <h2>Your city does not need more traffic. It needs smarter movement.</h2>
+      <p>
+        Choose your pass, unlock your scooter, and experience electric city travel
+        with a professional rental system built for modern urban riders.
+      </p>
+
+      <button class="primary-btn">Get Started With Zyphora Drift</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Zyphora Drift. Fictional Electric Scooter Rental Startup.</p>
+    <p>Premium monthly scooter passes for smart city mobility.</p>
+  </footer>
+  <!--twitter post-->
+  <!--Introducing Zyphora Drift 🛴⚡
+   Premium electric scooter rentals for smarter city movement.
+
+  Choose your pass. Unlock your ride. Glide through traffic without fuel, parking stress, or ownership pressure.
+
+    The city is moving. Drift with it. 🚀🌱
+
+     #ElectricScooter #Startup #UrbanMobility-->
+</body>
+</html>
