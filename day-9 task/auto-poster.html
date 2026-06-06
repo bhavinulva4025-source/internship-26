@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Auto-Poster Generator Dashboard</title>
+
+  <style>
+    :root {
+      --bg: #070812;
+      --card: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #a7a9c8;
+      --cyan: #35f3ff;
+      --pink: #ff3df2;
+      --lime: #b8ff4d;
+      --orange: #ff9f43;
+      --border: rgba(255, 255, 255, 0.18);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(53, 243, 255, 0.25), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255, 61, 242, 0.25), transparent 35%),
+        linear-gradient(135deg, #070812, #11142c);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .background-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 45px 45px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+      z-index: -2;
+    }
+
+    .orb {
+      position: fixed;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.45;
+      z-index: -1;
+      animation: floatOrb 8s infinite alternate ease-in-out;
+    }
+
+    .orb.one {
+      background: var(--cyan);
+      top: 8%;
+      left: 5%;
+    }
+
+    .orb.two {
+      background: var(--pink);
+      bottom: 5%;
+      right: 8%;
+      animation-delay: 2s;
+    }
+
+    @keyframes floatOrb {
+      from {
+        transform: translateY(0) scale(1);
+      }
+      to {
+        transform: translateY(-35px) scale(1.12);
+      }
+    }
+
+    .dashboard {
+      width: min(1200px, 92%);
+      margin: auto;
+      padding: 40px 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      box-shadow: 0 0 30px rgba(53, 243, 255, 0.45);
+      animation: pulseLogo 2.5s infinite;
+    }
+
+    @keyframes pulseLogo {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08);
+      }
+    }
+
+    .logo h2 {
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .status {
+      padding: 12px 18px;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      border-radius: 999px;
+      color: var(--lime);
+      box-shadow: inset 0 0 20px rgba(255,255,255,0.04);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 25px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      backdrop-filter: blur(22px);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(53,243,255,0.12), transparent, rgba(255,61,242,0.12));
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(184, 255, 77, 0.12);
+      color: var(--lime);
+      border: 1px solid rgba(184, 255, 77, 0.3);
+      margin-bottom: 18px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 76px);
+      line-height: 0.95;
+      margin-bottom: 20px;
+      letter-spacing: -3px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--cyan), var(--pink), var(--lime));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .input-zone {
+      display: grid;
+      gap: 15px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      resize: vertical;
+      border: 1px solid var(--border);
+      outline: none;
+      background: rgba(0,0,0,0.35);
+      color: white;
+      border-radius: 22px;
+      padding: 18px;
+      font-size: 16px;
+      line-height: 1.6;
+      transition: 0.3s ease;
+    }
+
+    textarea:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 30px rgba(53,243,255,0.25);
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 15px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      transition: 0.3s ease;
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      color: #05050b;
+      box-shadow: 0 0 35px rgba(53,243,255,0.35);
+    }
+
+    .send-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 0 55px rgba(255,61,242,0.55);
+    }
+
+    .clear-btn {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid var(--border);
+    }
+
+    .clear-btn:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-3px);
+    }
+
+    .poster-preview {
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+    }
+
+    .poster-card {
+      width: min(390px, 100%);
+      min-height: 470px;
+      border-radius: 30px;
+      padding: 28px;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)),
+        radial-gradient(circle at top right, rgba(255,61,242,0.45), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(53,243,255,0.45), transparent 40%);
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 35px 90px rgba(0,0,0,0.45);
+      position: relative;
+      overflow: hidden;
+      animation: posterFloat 4s infinite alternate ease-in-out;
+    }
+
+    @keyframes posterFloat {
+      from {
+        transform: rotate(-1deg) translateY(0);
+      }
+      to {
+        transform: rotate(1deg) translateY(-12px);
+      }
+    }
+
+    .poster-card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 28px solid rgba(255,255,255,0.08);
+      bottom: -55px;
+      right: -40px;
+    }
+
+    .poster-label {
+      font-size: 13px;
+      color: var(--lime);
+      margin-bottom: 22px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .poster-title {
+      font-size: 42px;
+      line-height: 1;
+      margin-bottom: 22px;
+      letter-spacing: -2px;
+    }
+
+    .poster-text {
+      color: #e6e6ff;
+      line-height: 1.7;
+      font-size: 16px;
+      word-break: break-word;
+    }
+
+    .poster-footer {
+      position: absolute;
+      bottom: 25px;
+      left: 28px;
+      right: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .mini-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--lime);
+      border-radius: 50%;
+      box-shadow: 0 0 18px var(--lime);
+    }
+
+    .facts-section {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+    }
+
+    .fact-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 145px;
+      transition: 0.3s ease;
+    }
+
+    .fact-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--cyan);
+      box-shadow: 0 18px 45px rgba(53,243,255,0.18);
+    }
+
+    .fact-number {
+      color: var(--orange);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .fact-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .fact-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .console-note {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .console-note span {
+      color: var(--cyan);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .facts-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .dashboard {
+        width: 94%;
+        padding: 24px 0;
+      }
+
+      .panel {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .facts-section {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .poster-card {
+        min-height: 430px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-grid"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <main class="dashboard">
+    <header class="topbar">
+      <div class="logo">
+        <div class="logo-mark">⚡</div>
+        <div>
+          <h2>PromptForge Auto-Poster</h2>
+          <p style="color: var(--muted); font-size: 14px;">Internal Agency Automation Tool</p>
+        </div>
+      </div>
+
+      <div class="status">● Automation Engine Online</div>
+    </header>
+
+    <section class="hero">
+      <div class="panel">
+        <div class="content">
+          <div class="badge">AI Poster Command Center</div>
+
+          <h1>
+            Turn Any Prompt Into A <span>Launch-Ready Poster</span>
+          </h1>
+
+          <p class="subtitle">
+            Write your campaign idea, product message, offer, announcement, or social media copy.
+            This dashboard simulates an automated posting system by converting your text into a JSON payload.
+          </p>
+
+          <div class="input-zone">
+            <textarea id="postInput" placeholder="Example: Launching our new electric scooter rental pass with unlimited city rides, student discount, and zero fuel cost..."></textarea>
+
+            <div class="actions">
+              <button class="send-btn" onclick="sendAutomatedPost()">Send Automated Post</button>
+              <button class="clear-btn" onclick="clearPoster()">Clear Prompt</button>
+            </div>
+          </div>
+
+          <p class="console-note">
+            Open browser console using <span>F12 → Console</span> to see the generated JSON object.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel poster-preview">
+        <div class="content">
+          <div class="poster-card">
+            <div class="poster-label">Generated Poster Preview</div>
+
+            <h2 class="poster-title" id="posterTitle">
+              Your Campaign Starts Here
+            </h2>
+
+            <p class="poster-text" id="posterText">
+              Type your prompt on the left and click the automation button to generate a live poster preview.
+            </p>
+
+            <div class="poster-footer">
+              <span>#AutoPoster</span>
+              <div class="mini-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="facts-section" id="factsContainer"></section>
+  </main>
+
+  <script>
+    // JSON array containing 5 facts about web development
+    const webDevelopmentFacts = [
+      {
+        id: 1,
+        title: "HTML Builds Structure",
+        fact: "HTML creates the basic skeleton of a webpage using elements like headings, paragraphs, buttons, and forms."
+      },
+      {
+        id: 2,
+        title: "CSS Controls Design",
+        fact: "CSS is used to style websites with colors, layouts, animations, spacing, and responsive design."
+      },
+      {
+        id: 3,
+        title: "JavaScript Adds Logic",
+        fact: "JavaScript makes websites interactive by handling clicks, forms, popups, APIs, and dynamic content."
+      },
+      {
+        id: 4,
+        title: "Responsive Design Matters",
+        fact: "Modern websites must work smoothly on mobile, tablet, laptop, and desktop screen sizes."
+      },
+      {
+        id: 5,
+        title: "APIs Connect Systems",
+        fact: "APIs allow websites to send and receive data from servers, databases, and third-party platforms."
+      }
+    ];
+
+    // Display facts dynamically on the dashboard
+    const factsContainer = document.getElementById("factsContainer");
+
+    webDevelopmentFacts.forEach(function(item) {
+      const factCard = document.createElement("div");
+      factCard.className = "fact-card";
+
+      factCard.innerHTML = `
+        <div class="fact-number">FACT 0${item.id}</div>
+        <h3>${item.title}</h3>
+        <p>${item.fact}</p>
+      `;
+
+      factsContainer.appendChild(factCard);
+    });
+
+    // Main automation logic
+    function sendAutomatedPost() {
+      const inputText = document.getElementById("postInput").value.trim();
+
+      if (inputText === "") {
+        alert("Please enter a poster prompt before sending.");
+        return;
+      }
+
+      // Required JSON object format
+      const automatedPost = {
+        chat_id: "agency_auto_poster_001",
+        text: inputText
+      };
+
+      // Print JSON string to browser console
+      console.log(JSON.stringify(automatedPost));
+
+      // Generate poster preview text
+      document.getElementById("posterTitle").textContent = createPosterHeading(inputText);
+      document.getElementById("posterText").textContent = inputText;
+    }
+
+    // Creates a short poster heading from user prompt
+    function createPosterHeading(text) {
+      const words = text.split(" ").filter(Boolean);
+
+      if (words.length <= 5) {
+        return text;
+      }
+
+      return words.slice(0, 5).join(" ") + "...";
+    }
+
+    // Clear input and reset preview
+    function clearPoster() {
+      document.getElementById("postInput").value = "";
+
+      document.getElementById("posterTitle").textContent = "Your Campaign Starts Here";
+
+      document.getElementById("posterText").textContent =
+        "Type your prompt on the left and click the automation button to generate a live poster preview.";
+    }
+  </script>
+</body>
+</html>
